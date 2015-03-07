@@ -1,0 +1,16 @@
+from math import *
+
+N = 1000000.0                   #Number of sampling points for x
+h = 1/N
+def f(x):
+    return (x**(0.5))/(e**x + 1)            #define the two functions, where w(x) is the transformation function
+def w(x):
+     return (x**(0.5))
+s1 = 0
+     
+for k in arange(N):                         #solves the Integration using the sampling formula
+    x_i = random()
+    prob = 1/(2*sqrt(x_i))
+    s1 += ((f(x_i))/(w(x_i)))*2*prob
+
+print(s1*h)
