@@ -1,0 +1,59 @@
+from math import *
+from numpy import *
+from pylab import *
+
+NBi = 10000 
+NTl = 0
+NPb = 0
+NBi209 = 0
+tauBi = 2760
+tauTl = 132
+tauPb = 198
+h = 1.0
+pBi = 1 - 2**(-h/tauBi)
+pTl = 1 - 2**(-h/tauTl)
+pPb = 1 - 2**(-h/tauPb)
+tmax = 20000
+
+tpoints = arange(0.0,tmax,h)
+Bipoints = []
+Tlpoints = []
+Pbpoints = []
+Bi209points = []
+
+for t in tpoints:
+    Bipoints.append(NBi)
+    Tlpoints.append(NTl)
+    Pbpoints.append(NPb)
+    Bi209points.append(NBi209)
+    
+    decay = 0
+    decay2 = 0
+    decay3 = 0
+    for i in range(NBi):
+        if random()<pBi:
+            decay += 1
+        else:
+            decay2 += 0.0001
+    NBi -= decay
+    NPb += decay
+    NTl += decay2
+    for i in range(NPb):
+        if random()<pPb:
+            decay3 += 1
+    NPb -= decay3
+    NBi209 += decay3
+            
+            
+            
+            
+        
+        
+    
+plot(tpoints,Bipoints)                      #blue line
+plot(tpoints,Tlpoints)                      #green line
+plot(tpoints,Pbpoints)                      #red line
+plot(tpoints,Bi209points)                   #light blue line                    
+xlabel("Time")
+ylabel("Number of atoms")
+show()
